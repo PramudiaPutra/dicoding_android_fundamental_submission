@@ -21,19 +21,16 @@
 
     <TextView
         android:id="@+id/text_view_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:layout_marginTop="8dp"
         android:text="@string/repository"
-        android:textColor="@color/github_grey"
         app:layout_constraintEnd_toStartOf="@+id/tv_repo"
         app:layout_constraintStart_toStartOf="@id/img_user_profile"
         app:layout_constraintTop_toBottomOf="@id/img_user_profile" />
 
     <TextView
         android:id="@+id/tv_repo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:textColor="@color/github_blue"
         app:layout_constraintEnd_toStartOf="@id/text_view_2"
         app:layout_constraintStart_toEndOf="@+id/text_view_1"
@@ -42,19 +39,16 @@
 
     <TextView
         android:id="@+id/text_view_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:layout_marginStart="16dp"
         android:text="@string/follower"
-        android:textColor="@color/github_grey"
         app:layout_constraintEnd_toStartOf="@id/tv_follower"
         app:layout_constraintStart_toEndOf="@id/tv_repo"
         app:layout_constraintTop_toTopOf="@id/text_view_1" />
 
     <TextView
         android:id="@+id/tv_follower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:textColor="@color/github_purple"
         app:layout_constraintEnd_toStartOf="@id/text_view_3"
         app:layout_constraintStart_toEndOf="@id/text_view_2"
@@ -64,11 +58,9 @@
 
     <TextView
         android:id="@+id/text_view_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/following"
-        android:textColor="@color/github_grey"
+        style="@style/TextNormal"
         app:layout_constraintEnd_toStartOf="@id/tv_following"
         app:layout_constraintStart_toEndOf="@id/tv_follower"
         app:layout_constraintTop_toTopOf="@id/text_view_1"
@@ -76,8 +68,7 @@
 
     <TextView
         android:id="@+id/tv_following"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:textColor="@color/github_red"
         app:layout_constraintEnd_toEndOf="@id/img_user_profile"
         app:layout_constraintStart_toEndOf="@id/text_view_3"
@@ -86,10 +77,8 @@
 
     <TextView
         android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextHeader"
         android:layout_marginTop="16dp"
-        android:textColor="@color/github_black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,9 +88,7 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/github_grey"
+        style="@style/TextNormal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_user_name"
@@ -109,11 +96,9 @@
 
     <TextView
         android:id="@+id/tv_company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:layout_marginTop="16dp"
         android:drawablePadding="8dp"
-        android:textColor="@color/github_grey"
         app:drawableStartCompat="@drawable/ic_baseline_work_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,11 +107,9 @@
 
     <TextView
         android:id="@+id/tv_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextNormal"
         android:layout_marginTop="8dp"
         android:drawablePadding="8dp"
-        android:textColor="@color/github_grey"
         app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

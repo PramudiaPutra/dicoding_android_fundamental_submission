@@ -1,6 +1,7 @@
 package com.pramudiaputr.githubapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,10 @@ import com.pramudiaputr.githubapp.model.GithubUserModel
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val USER_DATA = "USER_DATA"
+    }
+
     private lateinit var binding: ActivityMainBinding
     private val list = ArrayList<GithubUserModel>()
 
@@ -17,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        title = getString(R.string.list_user)
 
         list.addAll(listGithubUser)
         showRecyclerList()
@@ -55,7 +61,11 @@ class MainActivity : AppCompatActivity() {
     private fun showRecyclerList() {
         with(binding.rvGithub) {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = GithubUserAdapter(list)
+            adapter = GithubUserAdapter(list) {
+                val intent = Intent(context, DetailUserActivity::class.java)
+                intent.putExtra(USER_DATA, it)
+                startActivity(intent)
+            }
         }
     }
 }

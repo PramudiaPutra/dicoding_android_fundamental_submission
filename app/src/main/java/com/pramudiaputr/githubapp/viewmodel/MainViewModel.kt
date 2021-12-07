@@ -1,4 +1,4 @@
-package com.pramudiaputr.githubapp
+package com.pramudiaputr.githubapp.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -8,9 +8,14 @@ import com.pramudiaputr.githubapp.model.GithubUserModel
 
 class GithubUserAdapter(
     private val listUser: List<GithubUserModel>,
-    private val onClick: (GithubUserModel) -> Unit
 ) :
     RecyclerView.Adapter<GithubUserAdapter.ListViewHolder>() {
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnClickItem(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -31,7 +36,9 @@ class GithubUserAdapter(
             tvUserName.text = data.username
             tvName.text = data.name
         }
-        holder.itemView.setOnClickListener {onClick(data)}
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(data)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,4 +46,8 @@ class GithubUserAdapter(
     }
 
     class ListViewHolder(var binding: ItemGithubUserBinding) : RecyclerView.ViewHolder(binding.root)
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: GithubUserModel)
+    }
 }

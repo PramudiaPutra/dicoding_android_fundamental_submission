@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_detail_user" >
         <argument
             android:name="githubuser"
-            app:argType="com.pramudiaputr.githubapp.model.GithubUserModel" />
+            app:argType="com.pramudiaputr.githubapp.model.ListUserResponse" />
     </fragment>
 </navigation>

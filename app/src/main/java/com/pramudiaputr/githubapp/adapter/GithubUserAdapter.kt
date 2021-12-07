@@ -3,11 +3,12 @@ package com.pramudiaputr.githubapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pramudiaputr.githubapp.databinding.ItemGithubUserBinding
-import com.pramudiaputr.githubapp.model.GithubUserModel
+import com.pramudiaputr.githubapp.model.ListUserResponse
 
 class GithubUserAdapter(
-    private val listUser: List<GithubUserModel>,
+    private val listUser: List<ListUserResponse>,
 ) :
     RecyclerView.Adapter<GithubUserAdapter.ListViewHolder>() {
 
@@ -32,9 +33,12 @@ class GithubUserAdapter(
         val data = listUser[position]
 
         with(holder.binding) {
-            imgUserProfile.setImageResource(data.avatar)
-            tvUserName.text = data.username
-            tvName.text = data.name
+
+            Glide.with(imgUserProfile)
+                .load(data.avatarUrl)
+                .into(imgUserProfile)
+
+            tvUserName.text = data.login
         }
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(data)
@@ -48,6 +52,6 @@ class GithubUserAdapter(
     class ListViewHolder(var binding: ItemGithubUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: GithubUserModel)
+        fun onItemClicked(data: ListUserResponse)
     }
 }

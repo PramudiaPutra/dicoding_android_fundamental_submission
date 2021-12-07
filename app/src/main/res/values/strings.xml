@@ -7,6 +7,7 @@
     <string name="repository">repository:&#160;</string>
     <string name="follower">follower:&#160;</string>
     <string name="following">following:&#160;</string>
+    <string name="search_github_user">Search Github user</string>
 
     <string-array name="username">
         <item>JakeWharton</item>

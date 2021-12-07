@@ -7,11 +7,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.pramudiaputr.githubapp.R
 import com.pramudiaputr.githubapp.viewmodel.MainViewModel
 import com.pramudiaputr.githubapp.adapter.GithubUserAdapter
 import com.pramudiaputr.githubapp.databinding.FragmentMainBinding
 import com.pramudiaputr.githubapp.model.ListUserResponse
+import androidx.constraintlayout.widget.ConstraintLayout
+
 
 class MainFragment : Fragment() {
 
@@ -60,9 +63,22 @@ class MainFragment : Fragment() {
         })
 
         mainViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
-            if (isLoading) binding.progressBar.visibility = View.VISIBLE
-            else binding.progressBar.visibility = View.GONE
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
 
+        mainViewModel.searchCount.observe(viewLifecycleOwner, { count ->
+            if (count == 0) {
+                val mRootView = view.findViewById(R.id.mainFragment) as ConstraintLayout
+                Snackbar.make(
+                    mRootView,
+                    getString(R.string.username_not_found),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         })
     }
 

@@ -18,8 +18,11 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isConnected = MutableLiveData<Boolean>()
-    val isConnected: LiveData<Boolean> = _isConnected
+    private val _searchCount = MutableLiveData<Int>()
+    val searchCount: LiveData<Int> = _searchCount
+
+    private val _errorMessage = MutableLiveData<Boolean>()
+    val errorMessage: LiveData<Boolean> = _errorMessage
 
     companion object {
         const val TAG = "MainViewModel"
@@ -41,16 +44,14 @@ class MainViewModel : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUser.value = response.body()
-                    _isConnected.value = true
                 } else {
-                    _isConnected.value = false
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<List<ListUserResponse>>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailure connect: ${t.message}")
             }
 
         })
@@ -68,6 +69,7 @@ class MainViewModel : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
+                    _searchCount.value = response.body()?.totalCount
                 }
             }
 

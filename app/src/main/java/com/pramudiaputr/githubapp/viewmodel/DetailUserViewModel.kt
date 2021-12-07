@@ -17,6 +17,9 @@ class DetailUserViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String> = _username
+
     companion object {
         private val TAG = DetailUserViewModel::class.java.simpleName
     }
@@ -33,6 +36,7 @@ class DetailUserViewModel : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _userDetail.value = response.body()
+                    _username.value = response.body()?.login
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

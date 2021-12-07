@@ -10,5 +10,7 @@
     <string name="search_github_user">Search Github user</string>
     <string name="username_not_found">username tidak ditemukan</string>
     <string name="zero">0</string>
+    <string name="tab_follower">Follower</string>
+    <string name="tab_following">Following</string>
 
 </resources>

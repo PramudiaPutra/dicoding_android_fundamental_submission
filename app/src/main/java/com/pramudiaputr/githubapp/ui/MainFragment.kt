@@ -2,7 +2,9 @@ package com.pramudiaputr.githubapp.ui
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,6 +30,7 @@ class MainFragment : Fragment() {
 
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView.maxWidth = Integer.MAX_VALUE
+        searchView.queryHint = getString(R.string.search_github_user)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(search: String): Boolean {
@@ -57,6 +60,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar = view.findViewById(R.id.toolBar) as Toolbar
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         mainViewModel.listUser.observe(viewLifecycleOwner, { listUser ->
             showRecyclerList(listUser)

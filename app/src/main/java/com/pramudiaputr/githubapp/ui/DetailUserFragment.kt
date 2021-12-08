@@ -44,6 +44,7 @@ class DetailUserFragment : Fragment() {
         val args = DetailUserFragmentArgs.fromBundle(requireArguments())
 
         detailViewModel.getUserDetail(args.githubuser.login)
+        createPager(args.githubuser.login)
         detailViewModel.userDetail.observe(viewLifecycleOwner, { displayUserDetail(it) })
         detailViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
             if (isLoading) {
@@ -52,8 +53,6 @@ class DetailUserFragment : Fragment() {
                 binding.progressBar.visibility = View.INVISIBLE
             }
         })
-
-
     }
 
     private fun createPager(login: String) {
@@ -89,6 +88,5 @@ class DetailUserFragment : Fragment() {
             tvCompany.text = it.company
             tvLocation.text = it.location
         }
-        createPager(it.login)
     }
 }

@@ -47,6 +47,14 @@ class FollowingFragment : Fragment() {
                 binding.progressBar.visibility = View.INVISIBLE
             }
         })
+
+        followingViewMode.countList.observe(viewLifecycleOwner, { count ->
+            if (count == 0) {
+                binding.tvEmptyList.visibility = View.VISIBLE
+            } else {
+                binding.tvEmptyList.visibility = View.GONE
+            }
+        })
     }
 
     private fun showFollowing(list: List<ListUserResponse>) {

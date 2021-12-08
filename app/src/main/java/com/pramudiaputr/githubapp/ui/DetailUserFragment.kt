@@ -49,8 +49,12 @@ class DetailUserFragment : Fragment() {
         detailViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
             if (isLoading) {
                 binding.progressBar.visibility = View.VISIBLE
+                binding.tvCompany.visibility = View.GONE
+                binding.tvLocation.visibility = View.GONE
             } else {
                 binding.progressBar.visibility = View.INVISIBLE
+                binding.tvCompany.visibility = View.VISIBLE
+                binding.tvLocation.visibility = View.VISIBLE
             }
         })
     }
@@ -85,8 +89,8 @@ class DetailUserFragment : Fragment() {
             tvFollowing.text = it.following.toString()
             tvUserName.text = it.login
             tvName.text = it.name
-            tvCompany.text = it.company
-            tvLocation.text = it.location
+            tvCompany.text = it.company ?: getString(R.string.no_company)
+            tvLocation.text = it.location ?: getString(R.string.no_location)
         }
     }
 }

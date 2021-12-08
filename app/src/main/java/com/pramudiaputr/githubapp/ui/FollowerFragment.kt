@@ -47,6 +47,14 @@ class FollowerFragment : Fragment() {
                 binding.progressBar.visibility = View.INVISIBLE
             }
         })
+
+        followerViewModel.countList.observe(viewLifecycleOwner, { count ->
+            if (count == 0) {
+                binding.tvEmptyList.visibility = View.VISIBLE
+            } else {
+                binding.tvEmptyList.visibility = View.GONE
+            }
+        })
     }
 
     private fun showFollowers(list: List<ListUserResponse>) {

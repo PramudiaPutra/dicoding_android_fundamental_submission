@@ -18,15 +18,19 @@ interface ApiService {
     fun getUserList(): Call<List<ListUserResponse>>
 
     @GET("search/users")
+    @Headers("Authorization: token $token")
     fun searchUser(@Query("q") username: String): Call<SearchResponse>
 
     @GET("users/{username}")
+    @Headers("Authorization: token $token")
     fun getDetailUser(@Path("username") username: String): Call<UserDetailResponse>
 
     @GET("users/{username}/followers")
+    @Headers("Authorization: token $token")
     fun getFollowers(@Path("username") username: String): Call<List<ListUserResponse>>
 
     @GET("users/{username}/following")
+    @Headers("Authorization: token $token")
     fun getFollowing(@Path("username") username: String): Call<List<ListUserResponse>>
 
 }

@@ -18,6 +18,9 @@ class FollowerViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _countList = MutableLiveData<Int>()
+    val countList: LiveData<Int> = _countList
+
     companion object {
         private val TAG = FollowerViewModel::class.java.simpleName
     }
@@ -34,6 +37,7 @@ class FollowerViewModel : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _listFollower.value = response.body()
+                    _countList.value = response.body()?.size
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

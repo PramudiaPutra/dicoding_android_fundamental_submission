@@ -113,6 +113,7 @@
                 style="@style/TextNormal"
                 android:layout_marginTop="16dp"
                 android:drawablePadding="8dp"
+                android:gravity="center"
                 app:drawableStartCompat="@drawable/ic_baseline_work_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

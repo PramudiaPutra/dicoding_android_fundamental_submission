@@ -17,10 +17,6 @@ class DetailUserViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
-        private val TAG = DetailUserViewModel::class.java.simpleName
-    }
-
     fun getUserDetail(username: String) {
         _isLoading.value = true
 
@@ -43,5 +39,9 @@ class DetailUserViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private val TAG = DetailUserViewModel::class.java.simpleName
     }
 }

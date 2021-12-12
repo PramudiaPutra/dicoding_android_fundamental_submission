@@ -21,13 +21,6 @@ class MainViewModel : ViewModel() {
     private val _searchCount = MutableLiveData<Int>()
     val searchCount: LiveData<Int> = _searchCount
 
-//    private val _errorMessage = MutableLiveData<Boolean>()
-//    val errorMessage: LiveData<Boolean> = _errorMessage
-
-    companion object {
-        const val TAG = "MainViewModel"
-    }
-
     init {
         getListUser()
     }
@@ -79,5 +72,9 @@ class MainViewModel : ViewModel() {
             }
 
         })
+    }
+    
+    companion object {
+        private val TAG = MainViewModel::class.java.simpleName
     }
 }

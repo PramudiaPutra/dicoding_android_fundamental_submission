@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.pramudiaputr.githubapp.R
 import com.pramudiaputr.githubapp.databinding.ItemGithubUserBinding
 import com.pramudiaputr.githubapp.model.ListUserResponse
 
-class FollowerAdapter(
+class FollowAdapter(
     private val listUser: List<ListUserResponse>,
 ) :
-    RecyclerView.Adapter<FollowerAdapter.ListViewHolder>() {
+    RecyclerView.Adapter<FollowAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -30,6 +31,8 @@ class FollowerAdapter(
 
             Glide.with(imgUserProfile)
                 .load(data.avatarUrl)
+                .placeholder(R.drawable.ic_baseline_account_circle_24)
+                .error(R.drawable.ic_baseline_broken_image_24)
                 .into(imgUserProfile)
 
             tvUserName.text = data.login

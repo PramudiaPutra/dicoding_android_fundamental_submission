@@ -21,10 +21,6 @@ class FollowerViewModel : ViewModel() {
     private val _countList = MutableLiveData<Int>()
     val countList: LiveData<Int> = _countList
 
-    companion object {
-        private val TAG = FollowerViewModel::class.java.simpleName
-    }
-
     fun getFollower(username: String) {
         _isLoading.value = true
 
@@ -48,5 +44,9 @@ class FollowerViewModel : ViewModel() {
                 Log.e(TAG, "onFailure connect: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private val TAG = FollowerViewModel::class.java.simpleName
     }
 }

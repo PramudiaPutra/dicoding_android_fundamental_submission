@@ -1,21 +1,29 @@
 package com.pramudiaputr.githubapp.network
 
+import com.pramudiaputr.githubapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
+
     companion object {
-        fun getApiServices() : ApiService {
-            val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        private const val BASE_URL = BuildConfig.BASE_URL
+
+        fun getApiServices(): ApiService {
+            val loggingInterceptor = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            } else {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+            }
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

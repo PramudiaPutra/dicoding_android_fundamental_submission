@@ -7,25 +7,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pramudiaputr.githubapp.adapter.FollowAdapter
 import com.pramudiaputr.githubapp.adapter.FollowPagerAdapter
-import com.pramudiaputr.githubapp.adapter.FollowingAdapter
 import com.pramudiaputr.githubapp.databinding.FragmentFollowingBinding
 import com.pramudiaputr.githubapp.model.ListUserResponse
 import com.pramudiaputr.githubapp.viewmodel.FollowingViewModel
 
 class FollowingFragment : Fragment() {
 
-    private lateinit var binding: FragmentFollowingBinding
-    private lateinit var followingAdapter: FollowingAdapter
-
     private val followingViewMode: FollowingViewModel by viewModels()
+    private lateinit var followingAdapter: FollowAdapter
+    private var _binding: FragmentFollowingBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFollowingBinding.inflate(layoutInflater)
+        _binding = FragmentFollowingBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -57,8 +57,13 @@ class FollowingFragment : Fragment() {
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     private fun showFollowing(list: List<ListUserResponse>) {
-        followingAdapter = FollowingAdapter(list)
+        followingAdapter = FollowAdapter(list)
 
         with(binding.recyclerViewFollowing) {
             val linearLayoutManager = LinearLayoutManager(context)

@@ -18,23 +18,16 @@ import com.pramudiaputr.githubapp.viewmodel.DetailUserViewModel
 
 class DetailUserFragment : Fragment() {
 
-    private lateinit var binding: FragmentDetailUserBinding
-
     private val detailViewModel: DetailUserViewModel by viewModels()
-
-    companion object {
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_follower,
-            R.string.tab_following,
-        )
-    }
+    private var _binding: FragmentDetailUserBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDetailUserBinding.inflate(layoutInflater)
+        _binding = FragmentDetailUserBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -57,6 +50,11 @@ class DetailUserFragment : Fragment() {
                 binding.tvLocation.visibility = View.VISIBLE
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun createPager(login: String) {
@@ -92,5 +90,12 @@ class DetailUserFragment : Fragment() {
             tvCompany.text = it.company ?: getString(R.string.no_company)
             tvLocation.text = it.location ?: getString(R.string.no_location)
         }
+    }
+
+    companion object {
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_follower,
+            R.string.tab_following,
+        )
     }
 }

@@ -8,11 +8,14 @@ plugins {
 android {
     compileSdk 31
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
     defaultConfig {
+        buildConfigField("String", "KEY", '"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"')
+        buildConfigField("String", "BASE_URL", '"https://api.github.com/"')
+
         applicationId "com.pramudiaputr.githubapp"
         minSdk 23
         targetSdk 31

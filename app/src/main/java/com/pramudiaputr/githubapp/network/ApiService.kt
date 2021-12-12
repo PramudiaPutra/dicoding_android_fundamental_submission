@@ -1,5 +1,6 @@
 package com.pramudiaputr.githubapp.network
 
+import com.pramudiaputr.githubapp.BuildConfig
 import com.pramudiaputr.githubapp.model.ListUserResponse
 import com.pramudiaputr.githubapp.model.SearchResponse
 import com.pramudiaputr.githubapp.model.UserDetailResponse
@@ -9,7 +10,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val token = "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"
+const val token = BuildConfig.KEY
 
 interface ApiService {
 

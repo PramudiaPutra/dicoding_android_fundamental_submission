@@ -20,9 +20,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
     private lateinit var githubUserAdapter: GithubUserAdapter
     private val mainViewModel: MainViewModel by viewModels()
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.option_menu, menu)
@@ -54,7 +55,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(layoutInflater)
+        _binding = FragmentMainBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -86,6 +87,11 @@ class MainFragment : Fragment() {
                 ).show()
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun showRecyclerList(list: List<ListUserResponse>) {

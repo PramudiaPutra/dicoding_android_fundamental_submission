@@ -2,6 +2,7 @@ package com.pramudiaputr.githubapp.ui
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -20,8 +21,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainFragment : Fragment() {
 
-    private lateinit var githubUserAdapter: GithubUserAdapter
     private val mainViewModel: MainViewModel by viewModels()
+    private lateinit var githubUserAdapter: GithubUserAdapter
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -43,6 +44,20 @@ class MainFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.favorite -> {
+                Toast.makeText(context, "favorite", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.setting -> {
+                findNavController().navigate(R.id.action_mainFragment_to_settingFragment)
+                true
+            }
+            else -> true
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

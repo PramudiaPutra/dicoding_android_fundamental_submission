@@ -16,4 +16,7 @@
     <string name="no_follower">daftar follower kosong</string>
     <string name="no_company">tidak dalam perusahaan</string>
     <string name="no_location">lokasi tidak diketahui</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="enable_dark_mode">Enable dark mode</string>
 </resources>

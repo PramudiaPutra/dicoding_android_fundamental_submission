@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailUserFragment"
             app:destination="@id/detailUserFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailUserFragment"
@@ -23,4 +26,9 @@
             android:name="githubuser"
             app:argType="com.pramudiaputr.githubapp.model.ListUserResponse" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.pramudiaputr.githubapp.ui.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting"/>
 </navigation>

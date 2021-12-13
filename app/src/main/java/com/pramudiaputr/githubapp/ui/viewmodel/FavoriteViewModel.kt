@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.pramudiaputr.githubapp.database.FavoriteRepository
-import com.pramudiaputr.githubapp.model.ListUserResponse
 import com.pramudiaputr.githubapp.model.UserDetailResponse
 
 class FavoriteViewModel(application: Application): ViewModel(){

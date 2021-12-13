@@ -37,6 +37,11 @@ class FavoriteFragment : Fragment() {
         viewModel.getAllFavorite().observe(viewLifecycleOwner, { favoriteList ->
             if (favoriteList != null) {
                 showFavoriteList(favoriteList)
+                if (favoriteList.isNotEmpty()) {
+                    binding.tvEmptyList.visibility = View.GONE
+                } else {
+                    binding.tvEmptyList.visibility = View.VISIBLE
+                }
             }
         })
 

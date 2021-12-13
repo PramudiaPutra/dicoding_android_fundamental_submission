@@ -1,11 +1,13 @@
 package com.pramudiaputr.githubapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
@@ -14,13 +16,15 @@ import com.pramudiaputr.githubapp.R
 import com.pramudiaputr.githubapp.ui.adapter.FollowPagerAdapter
 import com.pramudiaputr.githubapp.databinding.FragmentDetailUserBinding
 import com.pramudiaputr.githubapp.model.UserDetailResponse
-import com.pramudiaputr.githubapp.ui.viewmodel.DetailUserViewModel
+import com.pramudiaputr.githubapp.ui.viewmodel.detailuser.DetailViewModel
+import com.pramudiaputr.githubapp.ui.viewmodel.detailuser.DetailViewModelFactory
 
 class DetailUserFragment : Fragment() {
 
-    private val detailViewModel: DetailUserViewModel by viewModels()
+    private lateinit var detailViewModel: DetailViewModel
     private var _binding: FragmentDetailUserBinding? = null
     private val binding get() = _binding!!
+    private var user: UserDetailResponse? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,9 +40,25 @@ class DetailUserFragment : Fragment() {
 
         val args = DetailUserFragmentArgs.fromBundle(requireArguments())
 
+        detailViewModel = obtainViewModel(activity as AppCompatActivity)
         detailViewModel.getUserDetail(args.githubuser.login)
+
         createPager(args.githubuser.login)
-        detailViewModel.userDetail.observe(viewLifecycleOwner, { displayUserDetail(it) })
+        detailViewModel.userDetail.observe(viewLifecycleOwner, {
+            displayUserDetail(it)
+            user = it
+        })
+
+        detailViewModel.getIsFavorite(args.githubuser.login).observe(viewLifecycleOwner, {
+            if (it.isNotEmpty()) {
+                binding.addFavorite?.visibility = View.GONE
+                binding.removeFavorite?.visibility = View.VISIBLE
+            } else {
+                binding.addFavorite?.visibility = View.VISIBLE
+                binding.removeFavorite?.visibility = View.GONE
+            }
+        })
+
         detailViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
             if (isLoading) {
                 binding.progressBar.visibility = View.VISIBLE
@@ -50,6 +70,21 @@ class DetailUserFragment : Fragment() {
                 binding.tvLocation.visibility = View.VISIBLE
             }
         })
+
+        binding.addFavorite?.setOnClickListener {
+            user.let { user ->
+                user?.login = args.githubuser.login
+                user?.isFavorite = true
+            }
+
+            detailViewModel.addFavorite(user as UserDetailResponse)
+            Log.d("USER_TAG", "isert: $user")
+        }
+
+        binding.removeFavorite?.setOnClickListener {
+            detailViewModel.removeFavorite(user as UserDetailResponse)
+            Log.d("USER_TAG", "delete: $user")
+        }
     }
 
     override fun onDestroy() {
@@ -90,6 +125,11 @@ class DetailUserFragment : Fragment() {
             tvCompany.text = it.company ?: getString(R.string.no_company)
             tvLocation.text = it.location ?: getString(R.string.no_location)
         }
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): DetailViewModel {
+        val factory = DetailViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory)[DetailViewModel::class.java]
     }
 
     companion object {

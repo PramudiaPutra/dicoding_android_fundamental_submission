@@ -21,4 +21,5 @@ class FavoriteRepository(application: Application) {
 
     fun delete(user: UserDetailResponse) = executorService.execute { mFavoriteDao.delete(user) }
 
+    fun getIsFavorite(username: String) : LiveData<List<UserDetailResponse>> = mFavoriteDao.getIsFavorite(username)
 }

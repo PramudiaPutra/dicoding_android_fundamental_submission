@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailUserFragment"
@@ -31,4 +34,9 @@
         android:name="com.pramudiaputr.githubapp.ui.SettingFragment"
         android:label="@string/setting"
         tools:layout="@layout/fragment_setting"/>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.pramudiaputr.githubapp.ui.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite"/>
 </navigation>

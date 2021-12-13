@@ -1,4 +1,4 @@
-package com.pramudiaputr.githubapp.viewmodel.setting
+package com.pramudiaputr.githubapp.ui.viewmodel.setting
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

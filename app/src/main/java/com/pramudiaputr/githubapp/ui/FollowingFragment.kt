@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pramudiaputr.githubapp.adapter.FollowAdapter
-import com.pramudiaputr.githubapp.adapter.FollowPagerAdapter
+import com.pramudiaputr.githubapp.ui.adapter.FollowAdapter
+import com.pramudiaputr.githubapp.ui.adapter.FollowPagerAdapter
 import com.pramudiaputr.githubapp.databinding.FragmentFollowingBinding
 import com.pramudiaputr.githubapp.model.ListUserResponse
-import com.pramudiaputr.githubapp.viewmodel.FollowingViewModel
+import com.pramudiaputr.githubapp.ui.viewmodel.FollowingViewModel
 
 class FollowingFragment : Fragment() {
 

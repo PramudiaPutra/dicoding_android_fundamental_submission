@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.pramudiaputr.githubapp.R
-import com.pramudiaputr.githubapp.viewmodel.MainViewModel
-import com.pramudiaputr.githubapp.adapter.GithubUserAdapter
+import com.pramudiaputr.githubapp.ui.viewmodel.MainViewModel
+import com.pramudiaputr.githubapp.ui.adapter.GithubUserAdapter
 import com.pramudiaputr.githubapp.databinding.FragmentMainBinding
 import com.pramudiaputr.githubapp.model.ListUserResponse
 import androidx.constraintlayout.widget.ConstraintLayout

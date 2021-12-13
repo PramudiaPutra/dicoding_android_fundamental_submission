@@ -1,4 +1,4 @@
-package com.pramudiaputr.githubapp.adapter
+package com.pramudiaputr.githubapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,16 +8,10 @@ import com.pramudiaputr.githubapp.R
 import com.pramudiaputr.githubapp.databinding.ItemGithubUserBinding
 import com.pramudiaputr.githubapp.model.ListUserResponse
 
-class GithubUserAdapter(
+class FollowAdapter(
     private val listUser: List<ListUserResponse>,
 ) :
-    RecyclerView.Adapter<GithubUserAdapter.ListViewHolder>() {
-
-    private lateinit var onItemClickCallback: OnItemClickCallback
-
-    fun setOnClickItem(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
+    RecyclerView.Adapter<FollowAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -43,9 +37,6 @@ class GithubUserAdapter(
 
             tvUserName.text = data.login
         }
-        holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(data)
-        }
     }
 
     override fun getItemCount(): Int {
@@ -53,8 +44,4 @@ class GithubUserAdapter(
     }
 
     class ListViewHolder(var binding: ItemGithubUserBinding) : RecyclerView.ViewHolder(binding.root)
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: ListUserResponse)
-    }
 }

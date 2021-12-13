@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.pramudiaputr.githubapp.dataStore
 import com.pramudiaputr.githubapp.databinding.FragmentSettingBinding
 import com.pramudiaputr.githubapp.utils.SettingPreferences
-import com.pramudiaputr.githubapp.viewmodel.setting.SettingViewModel
-import com.pramudiaputr.githubapp.viewmodel.setting.SettingViewModelFactory
+import com.pramudiaputr.githubapp.ui.viewmodel.setting.SettingViewModel
+import com.pramudiaputr.githubapp.ui.viewmodel.setting.SettingViewModelFactory
 
 class SettingFragment : Fragment() {
 

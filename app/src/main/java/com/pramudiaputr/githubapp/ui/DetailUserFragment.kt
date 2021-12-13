@@ -11,10 +11,10 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pramudiaputr.githubapp.R
-import com.pramudiaputr.githubapp.adapter.FollowPagerAdapter
+import com.pramudiaputr.githubapp.ui.adapter.FollowPagerAdapter
 import com.pramudiaputr.githubapp.databinding.FragmentDetailUserBinding
 import com.pramudiaputr.githubapp.model.UserDetailResponse
-import com.pramudiaputr.githubapp.viewmodel.DetailUserViewModel
+import com.pramudiaputr.githubapp.ui.viewmodel.DetailUserViewModel
 
 class DetailUserFragment : Fragment() {
 

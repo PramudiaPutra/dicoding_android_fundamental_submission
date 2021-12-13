@@ -1,4 +1,4 @@
-package com.pramudiaputr.githubapp.viewmodel
+package com.pramudiaputr.githubapp.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,9 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowingViewModel : ViewModel() {
-    private val _listFollowing = MutableLiveData<List<ListUserResponse>>()
-    val listFollowing: LiveData<List<ListUserResponse>> = _listFollowing
+class FollowerViewModel : ViewModel() {
+
+    private val _listFollower = MutableLiveData<List<ListUserResponse>>()
+    val listFollower: LiveData<List<ListUserResponse>> = _listFollower
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -20,10 +21,10 @@ class FollowingViewModel : ViewModel() {
     private val _countList = MutableLiveData<Int>()
     val countList: LiveData<Int> = _countList
 
-    fun getFollowing(username: String) {
+    fun getFollower(username: String) {
         _isLoading.value = true
 
-        val client = ApiConfig.getApiServices().getFollowing(username)
+        val client = ApiConfig.getApiServices().getFollowers(username)
         client.enqueue(object : Callback<List<ListUserResponse>> {
             override fun onResponse(
                 call: Call<List<ListUserResponse>>,
@@ -31,7 +32,7 @@ class FollowingViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listFollowing.value = response.body()
+                    _listFollower.value = response.body()
                     _countList.value = response.body()?.size
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
@@ -46,6 +47,6 @@ class FollowingViewModel : ViewModel() {
     }
 
     companion object {
-        private val TAG = FollowingViewModel::class.java.simpleName
+        private val TAG = FollowerViewModel::class.java.simpleName
     }
 }

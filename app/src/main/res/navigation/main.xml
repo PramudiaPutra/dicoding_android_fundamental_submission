@@ -27,7 +27,12 @@
         tools:layout="@layout/fragment_detail_user" >
         <argument
             android:name="githubuser"
-            app:argType="com.pramudiaputr.githubapp.model.ListUserResponse" />
+            app:argType="com.pramudiaputr.githubapp.model.ListUserResponse"
+            app:nullable="true" />
+        <argument
+            android:name="favoriteUser"
+            app:argType="com.pramudiaputr.githubapp.model.UserDetailResponse"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -38,5 +43,9 @@
         android:id="@+id/favoriteFragment"
         android:name="com.pramudiaputr.githubapp.ui.FavoriteFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favorite"/>
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailUserFragment"
+            app:destination="@id/detailUserFragment" />
+    </fragment>
 </navigation>

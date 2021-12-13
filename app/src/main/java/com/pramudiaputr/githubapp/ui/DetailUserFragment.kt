@@ -39,17 +39,19 @@ class DetailUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val args = DetailUserFragmentArgs.fromBundle(requireArguments())
+        val username = args.githubuser?.login ?: args.favoriteUser?.login
+        val avatarUrl = args.githubuser?.avatarUrl ?: args.favoriteUser?.avatarUrl
 
         detailViewModel = obtainViewModel(activity as AppCompatActivity)
-        detailViewModel.getUserDetail(args.githubuser.login)
+        detailViewModel.getUserDetail(username!!)
 
-        createPager(args.githubuser.login)
+        createPager(username)
         detailViewModel.userDetail.observe(viewLifecycleOwner, {
             displayUserDetail(it)
             user = it
         })
 
-        detailViewModel.getIsFavorite(args.githubuser.login).observe(viewLifecycleOwner, {
+        detailViewModel.getIsFavorite(username).observe(viewLifecycleOwner, {
             if (it.isNotEmpty()) {
                 binding.addFavorite?.visibility = View.GONE
                 binding.removeFavorite?.visibility = View.VISIBLE
@@ -73,8 +75,8 @@ class DetailUserFragment : Fragment() {
 
         binding.addFavorite?.setOnClickListener {
             user.let { user ->
-                user?.login = args.githubuser.login
-                user?.isFavorite = true
+                user?.login = username
+                user?.avatarUrl = avatarUrl!!
             }
 
             detailViewModel.addFavorite(user as UserDetailResponse)

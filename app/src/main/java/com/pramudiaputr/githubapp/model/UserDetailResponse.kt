@@ -15,16 +15,12 @@ data class UserDetailResponse(
     @ColumnInfo(name = "id")
     var id: Int = 0,
 
-    @ColumnInfo(name = "is_favorite")
-    var isFavorite: Boolean = false,
-
     @ColumnInfo(name = "username")
     @SerializedName("login")
     var login: String = "",
 
-    @Ignore
     @SerializedName("avatar_url")
-    val avatarUrl: String = "",
+    var avatarUrl: String = "",
 
     @Ignore
     @SerializedName("company")

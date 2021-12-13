@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.pramudiaputr.githubapp.model.UserDetailResponse
 
-@Database(entities = [UserDetailResponse::class], version = 1)
+@Database(entities = [UserDetailResponse::class], version = 2)
 abstract class FavoriteDatabase : RoomDatabase() {
 
     abstract fun favoriteDao(): FavoriteDao

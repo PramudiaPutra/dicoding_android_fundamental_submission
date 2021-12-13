@@ -2,7 +2,6 @@ package com.pramudiaputr.githubapp.ui
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -49,7 +48,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.favorite -> {
-                Toast.makeText(context, "favorite", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_mainFragment_to_favoriteFragment)
                 true
             }
             R.id.setting -> {
@@ -115,7 +114,7 @@ class MainFragment : Fragment() {
         githubUserAdapter.setOnClickItem(object : GithubUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ListUserResponse) {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToDetailUserFragment(data)
+                    MainFragmentDirections.actionMainFragmentToDetailUserFragment(data, null)
                 )
             }
         })
